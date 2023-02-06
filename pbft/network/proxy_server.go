@@ -2,7 +2,7 @@ package network
 
 import (
 	"net/http"
-	"github.com/bigpicturelabs/consensusPBFT/pbft/consensus"
+	"../consensus"
 	"encoding/json"
 	"fmt"
 	"bytes"

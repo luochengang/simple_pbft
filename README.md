@@ -30,3 +30,21 @@ In this sample implementation, there is no client. So, every node including the 
 
 ## License
 Apache 2.0
+
+请求命令
+
+cd simple_pbft
+go run main.go MS
+
+cd simple_pbft
+go run main.go IBM
+
+cd simple_pbft
+go run main.go Google
+
+cd simple_pbft
+go run main.go Apple
+
+curl --location --request POST 'http://localhost:1111/req' \
+--header 'Content-Type: application/json' \
+--data-raw '{"clientID":"Newton", "operation": "GetMyName", "timestamp": 859381532}'
