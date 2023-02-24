@@ -31,6 +31,7 @@ func (server *Server) Start() {
 }
 
 func (server *Server) setRoute() {
+	// client请求的url是/req, 对应的处理方法是server.getReq
 	http.HandleFunc("/req", server.getReq)
 	http.HandleFunc("/preprepare", server.getPrePrepare)
 	http.HandleFunc("/prepare", server.getPrepare)
@@ -40,12 +41,14 @@ func (server *Server) setRoute() {
 
 func (server *Server) getReq(writer http.ResponseWriter, request *http.Request) {
 	var msg consensus.RequestMsg
+	// 将Http request.Body解析为consensus.RequestMsg结构体
 	err := json.NewDecoder(request.Body).Decode(&msg)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
+	// send consensus.RequestMsg to channel server.node.MsgEntrance
 	server.node.MsgEntrance <- &msg
 }
 
